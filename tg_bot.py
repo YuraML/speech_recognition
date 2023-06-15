@@ -55,7 +55,7 @@ def reply_to_user(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
-    token = os.getenv("TOKEN")
+    token = os.getenv("TG_TOKEN")
     updater = Updater(token)
 
     dispatcher = updater.dispatcher
