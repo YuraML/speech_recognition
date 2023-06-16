@@ -5,9 +5,9 @@ import logging
 import telegram
 
 from dotenv import load_dotenv
-from vk_api.longpoll import VkLongPoll, VkEventType, TelegramLogsHandler
+from vk_api.longpoll import VkLongPoll, VkEventType
 
-from services import create_session, get_response
+from services import create_session, get_response, TelegramLogsHandler
 
 load_dotenv()
 
