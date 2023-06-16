@@ -1,6 +1,6 @@
 # speech_recognition
  
-Два чат-бота, работающих на платформе Google DialogFlow: один для Telegram и другой для VK. Оба бота обрабатывают пользовательские запросы и предоставляют ответы, используя возможности DialogFlow.
+Два чат-бота, работающих на платформе Google [DialogFlow](https://dialogflow.cloud.google.com/#/login): один для Telegram и другой для VK. Оба бота обрабатывают пользовательские запросы и предоставляют ответы, используя возможности DialogFlow.
 
 ![bot](https://dvmn.org/media/filer_public/1e/f6/1ef61183-56ad-4094-b3d0-21800bdb8b09/demo_vk_bot.gif)
 
@@ -43,7 +43,9 @@ TG_TOKEN={Ваш токен бота Telegram}
 TG_LOGS_TOKEN={Ваш токен бота Telegram для логирования}
 PROJECT_ID={ID вашего проекта в Google Cloud}
 CHAT_ID={ID чата Telegram}
+GOOGLE_APPLICATION_CREDENTIALS={путь до файла application_default_credentials.json}
 ```
+Получить ID чата можно [здесь](https://t.me/userinfobot), а получение файла application_default_credentials.json описано [вот тут](https://cloud.google.com/dialogflow/es/docs/quick/setup#sdk).
 
 ### Запуск
 
