@@ -13,10 +13,9 @@ load_dotenv()
 def reply_to_user(event, vk_api):
     project_id = os.getenv('PROJECT_ID')
     session, session_client = create_session(project_id, str(event.user_id))
-    response = get_response(session, session_client, event.text, 'ru')
-    if not response:
-        response = "Не совсем понимаю, о чем вы. Можете уточнить?"
-    vk_api.messages.send(user_id=event.user_id, message=response, random_id=random.randint(1, 1000))
+    answer, is_fallback = get_response(session, session_client, event.text, 'ru')
+    if not is_fallback and answer:
+        vk_api.messages.send(user_id=event.user_id, message=answer, random_id=random.randint(1, 1000))
 
 
 if __name__ == "__main__":
