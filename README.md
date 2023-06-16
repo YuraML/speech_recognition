@@ -50,11 +50,11 @@ CHAT_ID={ID чата Telegram}
 Для запуска ботов введите в командную строку:
 
 ```console
-python telegram_bot.py
+python3 tg_bot.py
 ```
 или
 ```console
-python vk_bot.py
+python3 vk_bot.py
 ```
 
 Скрипт работает непрерывно, 24/7.
@@ -86,7 +86,7 @@ python vk_bot.py
 - Запустите скрипт intents.py.
 
 ```console
-python intents.py
+python3 intents.py
 ```
 
 После выполнения этих шагов, новые интенты, которые вы указали в файле intents.json, будут созданы в вашем Dialogflow агенте. Их можно увидеть и редактировать в консоли Dialogflow.
