@@ -19,7 +19,7 @@ def start_command(update: Update, context: CallbackContext) -> None:
     )
 
 
-def reply_to_user(project_id, session_id, update: Update, context: CallbackContext) -> None:
+def reply_to_user(update: Update, context: CallbackContext, project_id: str, session_id: str) -> None:
     text = update.message.text
     language_code = 'ru'
     try:
@@ -46,7 +46,7 @@ def main() -> None:
     logger.addHandler(TelegramLogsHandler(bot, chat_id))
     logger.setLevel(logging.INFO)
     dispatcher.add_handler(CommandHandler("start", start_command))
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply_to_user))
+    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, lambda update, context: reply_to_user(update, context, project_id, session_id)))
 
     updater.start_polling()
     updater.idle()
