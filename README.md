@@ -88,7 +88,7 @@ python3 vk_bot.py
 - Запустите скрипт intents.py.
 
 ```console
-python3 intents.py
+python3 intent.py
 ```
 
 После выполнения этих шагов, новые интенты, которые вы указали в файле intents.json, будут созданы в вашем Dialogflow агенте. Их можно увидеть и редактировать в консоли Dialogflow.

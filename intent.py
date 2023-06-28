@@ -4,8 +4,6 @@ import os
 from dotenv import load_dotenv
 from google.cloud import dialogflow
 
-load_dotenv()
-
 
 def create_intent(project_id, display_name, training_phrases_parts, message_texts):
     intents_client = dialogflow.IntentsClient()
@@ -32,6 +30,7 @@ def create_intent(project_id, display_name, training_phrases_parts, message_text
 
 
 def main():
+    load_dotenv()
     project_id = os.getenv('PROJECT_ID')
 
     with open('intents.json', 'r', encoding="utf-8") as f:

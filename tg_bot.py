@@ -8,8 +8,6 @@ from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, Callb
 
 from services import create_session, get_response, TelegramLogsHandler
 
-load_dotenv()
-
 logger = logging.getLogger(__name__)
 
 
@@ -21,22 +19,12 @@ def start_command(update: Update, context: CallbackContext) -> None:
     )
 
 
-def help_command(update: Update, context: CallbackContext) -> None:
-    update.message.reply_text('Help!')
-
-
-def reply_to_user(update: Update, context: CallbackContext) -> None:
-    project_id = os.getenv('PROJECT_ID')
-    session_id = os.getenv('CHAT_ID')
+def reply_to_user(project_id, session_id, update: Update, context: CallbackContext) -> None:
     text = update.message.text
     language_code = 'ru'
-
     try:
         session, session_client = create_session(project_id, session_id)
         response, is_fallback = get_response(session, session_client, text, language_code)
-        if not response:
-            response = "Не совсем понимаю, о чем вы. Можете уточнить?"
-
         update.message.reply_text(response)
 
     except Exception as e:
@@ -44,25 +32,23 @@ def reply_to_user(update: Update, context: CallbackContext) -> None:
 
 
 def main() -> None:
+    load_dotenv()
     token = os.getenv("TG_TOKEN")
     log_bot_token = os.getenv("TG_LOGS_TOKEN")
     chat_id = os.getenv('CHAT_ID')
+    project_id = os.getenv('PROJECT_ID')
+    session_id = os.getenv('CHAT_ID')
 
     updater = Updater(token)
     dispatcher = updater.dispatcher
-
     bot = telegram.Bot(token=log_bot_token)
 
     logger.addHandler(TelegramLogsHandler(bot, chat_id))
     logger.setLevel(logging.INFO)
-
     dispatcher.add_handler(CommandHandler("start", start_command))
-    dispatcher.add_handler(CommandHandler("help", help_command))
-
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, reply_to_user))
 
     updater.start_polling()
-
     updater.idle()
 
 
